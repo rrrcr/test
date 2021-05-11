@@ -37,7 +37,7 @@ function checkIfDataExists()
 function showMessage()
 {
     $db = new PDO('sqlite:/tmp/info.db');
-    $info = $db->query("SELECT fact_string FROM facts WHERE DATE(date) =DATE( 'now') ");
+    $info = $db->query("SELECT fact_string FROM facts WHERE DATE(date) BETWEEN DATE( 'now','-1 days') AND DATE( 'now')");
     $str = $info->fetchAll();
     if (empty($str))
     {
